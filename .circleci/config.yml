@@ -11,6 +11,10 @@ jobs:
     steps:
       - checkout
       - run: npm install
+      - remote-stacks-update/setup_github_keys
+      - remote-stacks-update/setup_git_config:
+          git_name: "Version Updater Bot"
+          git_email: updater-bot@coingaming.io
       - run: npm run test
 
   release:
