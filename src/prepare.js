@@ -15,9 +15,9 @@ const writeVersion = async ({ versionFile, nextVersion, logger, cwd }) => {
 };
 
 module.exports = async function prepare(
-    _pluginConfig,
-    { nextRelease: { version }, cwd, logger },
-    { versionFile },
+  _pluginConfig,
+  { nextRelease: { version }, cwd, logger },
+  { versionFile },
 ) {
   const { fileVersion } = await writeVersion({ versionFile, nextVersion: version, logger, cwd });
 

@@ -1,4 +1,3 @@
-// const verifyConditions = require('./src/verify');
 const util = require('util');
 const path = require('path');
 const { readFile } = require('fs').promises;
