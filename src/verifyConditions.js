@@ -40,7 +40,7 @@ Please define your app's version a string constant named \`VERSION\` inside your
  * @param {*} context The context provided by semantic-release
  */
 module.exports = async function verify(cwd) {
-    // - Locate version file
+    console.log('context from verifyConditions `%s`', JSON.stringify(cwd));
     const versionFile = await verifyVersionFile(cwd);
 
     return { versionFile };
