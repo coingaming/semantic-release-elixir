@@ -11,9 +11,10 @@ const context = {
 };
 
 const versionFile = 'VERSION';
+const command = ':';
 
 it('writes the new version to the VERSION file', async () => {
-    await prepare({}, context, { versionFile });
+    await prepare({}, context, { versionFile, command });
     const versionContents = await readFile(path.resolve(cwd, versionFile), 'utf8');
     expect(versionContents).toEqual('VERSION="1.2.0"');
 });
