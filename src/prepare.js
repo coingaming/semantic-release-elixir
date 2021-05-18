@@ -1,5 +1,6 @@
 const { readFile, writeFile } = require('fs').promises;
 const path = require('path');
+const execa = require('execa');
 const { VERSION_REGEX } = require('./common');
 
 const writeVersion = async ({ versionFile, nextVersion, logger, cwd }) => {
@@ -14,12 +15,18 @@ const writeVersion = async ({ versionFile, nextVersion, logger, cwd }) => {
   return { fileVersion };
 };
 
+const commitVersion = async () => {
+  await execa('git', ['ci', '-am', 'version update']);
+  await execa('git', ['push']);
+};
+
 module.exports = async function prepare(
   _pluginConfig,
   { nextRelease: { version }, cwd, logger },
   { versionFile },
 ) {
   const { fileVersion } = await writeVersion({ versionFile, nextVersion: version, logger, cwd });
+  await commitVersion();
 
   return { fileVersion };
 };
