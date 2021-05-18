@@ -39,8 +39,10 @@ Please define your app's version a string constant named \`VERSION\` inside your
  * @param {*} pluginConfig The semantic-release plugin config
  * @param {*} context The context provided by semantic-release
  */
-module.exports = async function verify(cwd) {
-    console.log('context from verifyConditions `%s`', JSON.stringify(cwd));
+module.exports = async function verify({ cwd }) {
+    if (cwd === undefined) {
+        cwd = process.cwd();
+    }
     const versionFile = await verifyVersionFile(cwd);
 
     return { versionFile };
