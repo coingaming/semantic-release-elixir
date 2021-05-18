@@ -10,7 +10,22 @@ jobs:
       - run: npm install
       - run: npm run test
 
+  release:
+    docker:
+      - image: circleci/node:12
+    steps:
+      - checkout
+      - run: npm install
+      - run: npx semantic-release
+
+
 workflows:
   test:
     jobs:
       - test
+      - release:
+          filters:
+            branches:
+              only: master
+          requires:
+            - test
