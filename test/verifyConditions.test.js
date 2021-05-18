@@ -1,5 +1,4 @@
 const path = require('path');
-// const { readFile } = require('fs').promises;
 const SemanticReleaseError = require('@semantic-release/error');
 const verifyConditions = require('../src/verifyConditions');
 
@@ -25,4 +24,11 @@ describe('when the VERSION file is invalid', () => {
 it('verifies the version file', async () => {
     const { versionFile } = await verifyConditions(validCwd);
     expect(versionFile).toEqual('VERSION');
+});
+
+describe('when the existing version file contains a prerelease version', () => {
+    it('verifies the version file', async () => {
+        const { versionFile } = await verifyConditions(validCwd);
+        expect(versionFile).toEqual('VERSION');
+    });
 });
