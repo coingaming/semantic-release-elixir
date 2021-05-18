@@ -6,5 +6,17 @@
   "repository": "git@github.com:coingaming/semantic-release-elixir.git",
   "author": "Coingaming",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "devDependencies": {
+    "eslint": "^7.26.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.2"
+  },
+  "dependencies": {
+    "@semantic-release/error": "^2.2.0",
+    "glob": "^7.1.7"
+  },
+  "peerDependencies": {
+    "semantic-release": ">=16.0.0 <18.0.0"
+  }
 }
