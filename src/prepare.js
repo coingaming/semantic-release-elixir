@@ -18,6 +18,7 @@ const writeVersion = async ({ versionFile, nextVersion, logger, cwd }) => {
 const commitVersion = async () => {
   await execa('git', ['ci', '-am', 'version update']);
   const branch = await execa('git', ['rev-parse', '--abbrev-ref', 'HEAD']);
+  console.log('%s', JSON.stringify(branch));
   await execa('git', ['push', 'origin', branch]);
 };
 
