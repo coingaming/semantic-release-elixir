@@ -8,31 +8,31 @@ const glob = util.promisify(require('glob'));
 const { VERSION_REGEX } = require('./common');
 
 const verifyVersionFile = async cwd => {
-  const versionFiles = await glob('VERSION', { cwd });
-  if (versionFiles.length !== 1) {
-    throw new SemanticReleaseError(
-      "Couldn't find a `VERSION` file.",
-      'ENOVERSIONFILE',
-      `A \`VERSION\` file in the root of your project is required.
+    const versionFiles = await glob('VERSION', { cwd });
+    if (versionFiles.length !== 1) {
+        throw new SemanticReleaseError(
+            "Couldn't find a `VERSION` file.",
+            'ENOVERSIONFILE',
+            `A \`VERSION\` file in the root of your project is required.
 Please create a \`VERSION\` file with a defined \`VERSION\` constant in your root dir.
       `,
-    );
-  }
+        );
+    }
 
-  const [versionFile] = versionFiles;
-  const fullVersionPath = path.resolve(cwd, versionFile);
-  const versionContents = await readFile(fullVersionPath, 'utf8');
-  if (!VERSION_REGEX.test(versionContents)) {
-    throw new SemanticReleaseError(
-      `Couldn't find a valid version constant defined in \`${versionFile}\`.`,
-      'EINVALIDVERSIONFILE',
-      `Your \`VERSION\` file must define a \`VERSION\` constant.
+    const [versionFile] = versionFiles;
+    const fullVersionPath = path.resolve(cwd, versionFile);
+    const versionContents = await readFile(fullVersionPath, 'utf8');
+    if (!VERSION_REGEX.test(versionContents)) {
+        throw new SemanticReleaseError(
+            `Couldn't find a valid version constant defined in \`${versionFile}\`.`,
+            'EINVALIDVERSIONFILE',
+            `Your \`VERSION\` file must define a \`VERSION\` constant.
 Please define your app's version a string constant named \`VERSION\` inside your \`VERSION\` file.
       `,
-    );
-  }
+        );
+    }
 
-  return versionFile;
+    return versionFile;
 };
 
 /**
@@ -41,8 +41,8 @@ Please define your app's version a string constant named \`VERSION\` inside your
  * @param {*} context The context provided by semantic-release
  */
 module.exports = async function verify(cwd) {
-  // - Locate version file
-  const versionFile = await verifyVersionFile(cwd);
+    // - Locate version file
+    const versionFile = await verifyVersionFile(cwd);
 
-  return { versionFile };
+    return { versionFile };
 };

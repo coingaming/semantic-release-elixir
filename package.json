@@ -7,6 +7,9 @@
   "author": "Coingaming",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "test": "jest"
+  },
   "devDependencies": {
     "eslint": "^7.26.0",
     "eslint-config-airbnb-base": "^14.2.1",
@@ -14,7 +17,9 @@
   },
   "dependencies": {
     "@semantic-release/error": "^2.2.0",
-    "glob": "^7.1.7"
+    "glob": "^7.1.7",
+    "jest": "^26.6.3",
+    "semantic-release": "^17.4.3"
   },
   "peerDependencies": {
     "semantic-release": ">=16.0.0 <18.0.0"
