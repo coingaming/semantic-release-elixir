@@ -4,7 +4,8 @@ const filePrepare = require('./src/prepare');
 let versionFile;
 
 async function verifyConditions(_pluginConfig, context) {
-  ({ versionFile } = await fileVerify(context));
+  console.log('context from index: `%s`', JSON.stringify(context));
+  ({ versionFile } = await fileVerify({ context }));
 }
 
 async function prepare(pluginConfig, context) {
