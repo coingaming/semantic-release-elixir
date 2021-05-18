@@ -1,0 +1,10 @@
+{
+  "name": "semantic-release-elixir",
+  "version": "1.0.0",
+  "description": "Semantic Release for Elixir apps",
+  "main": "index.js",
+  "repository": "git@github.com:coingaming/semantic-release-elixir.git",
+  "author": "Coingaming",
+  "license": "MIT",
+  "private": false
+}
