@@ -1,6 +1,9 @@
 # This config is equivalent to both the '.circleci/extended/orb-free.yml' and the base '.circleci/config.yml'
 version: 2.1
 
+orbs:
+  remote-stacks-update: coingaming/stacks-update@0.2.12
+
 jobs:
   test:
     docker:
@@ -15,6 +18,10 @@ jobs:
       - image: circleci/node:12
     steps:
       - checkout
+      - remote-stacks-update/setup_github_keys
+      - remote-stacks-update/setup_git_config:
+          git_name: "Version Updater Bot"
+          git_email: updater-bot@coingaming.io
       - run: npm install
       - run: npx semantic-release
 
