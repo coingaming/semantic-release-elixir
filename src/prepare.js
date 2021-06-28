@@ -6,7 +6,8 @@ const { VERSION_REGEX } = require('./common');
 const writeVersion = async ({ versionFile, nextVersion, logger, cwd }) => {
   const fullVersionPath = path.resolve(cwd, versionFile);
   const versionContents = await readFile(fullVersionPath, 'utf8');
-  const newContents = versionContents.replace(VERSION_REGEX, `${nextVersion}`);
+  const versionTrimmed = versionContents.trim();
+  const newContents = versionTrimmed.replace(VERSION_REGEX, `${nextVersion}`);
   logger.log('Writing version %s to `%s`', nextVersion, versionFile);
   await writeFile(fullVersionPath, newContents, 'utf8');
 
