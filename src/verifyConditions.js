@@ -21,7 +21,8 @@ Please create a \`VERSION\` file with a defined \`VERSION\` constant in your roo
     const [versionFile] = versionFiles;
     const fullVersionPath = path.resolve(cwd, versionFile);
     const versionContents = await readFile(fullVersionPath, 'utf8');
-    if (!VERSION_REGEX.test(versionContents)) {
+    const versionTrimmed = versionContents.trim();
+    if (!VERSION_REGEX.test(versionTrimmed)) {
         throw new SemanticReleaseError(
             `Couldn't find a valid version constant defined in \`${versionFile}\`.`,
             'EINVALIDVERSIONFILE',
