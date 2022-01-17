@@ -14,14 +14,6 @@ const writeVersion = async ({ versionFile, nextVersion, logger, cwd }) => {
   return { nextVersion };
 };
 
-const commitVersion = async (command) => {
-  if (command === 'git') {
-    await execa(command, ['commit', '-m', 'version update', 'VERSION']);
-    const result = await execa(command, ['rev-parse', '--abbrev-ref', 'HEAD']);
-    await execa(command, ['push', 'origin', result.stdout]);
-  }
-};
-
 module.exports = async function prepare(
   _pluginConfig,
   { nextRelease: { version }, cwd, logger },
@@ -31,7 +23,6 @@ module.exports = async function prepare(
     command = 'git';
   }
   const { fileVersion } = await writeVersion({ versionFile, nextVersion: version, logger, cwd });
-  await commitVersion(command);
 
   return { fileVersion };
 };
