@@ -16,7 +16,8 @@ const writeVersion = async ({ versionFile, nextVersion, logger, cwd }) => {
 
 const commitVersion = async (command) => {
   if (command === 'git') {
-    await execa(command, ['add', '.']);
+    await execa(command, ['checkout', '.npmrc']);
+    await execa(command, ['checkout', 'package-lock.json']);
     await execa(command, ['commit', '-m', 'version update', 'VERSION']);
     const result = await execa(command, ['rev-parse', '--abbrev-ref', 'HEAD']);
     await execa(command, ['push', 'origin', result.stdout]);
