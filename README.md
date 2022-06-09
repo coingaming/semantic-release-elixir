@@ -26,3 +26,7 @@ Add the plugin to the [semantic-release configuration file](https://github.com/s
   ]
 }
 ```
+
+## Publishing
+
+It publishes automatically if you follow semantic-release comments style.
