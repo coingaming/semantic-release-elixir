@@ -1,6 +1,7 @@
 # semantic-release-elixir
 
 [semantic-release](https://github.com/semantic-release/semantic-release) plugin for managing Elixir apps versions.
+All it does is updating the VERSION file, which you need to read in your mix.exs file afterwards, to keep version consistency.
 
 Step | Description
 ------------ | -------------
